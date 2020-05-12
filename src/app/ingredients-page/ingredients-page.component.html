@@ -1,0 +1,145 @@
+<app-navbar></app-navbar>
+<div class="overall">
+  <div class="ingredientEdit">
+    <mat-card class="editBox">
+      <mat-form-field class="name">
+        <input
+          matInput
+          placeholder="Name"
+          [(ngModel)]="ingredient.name"
+          name="name"
+        />
+      </mat-form-field>
+      <mat-form-field class="name">
+        <input
+          matInput
+          placeholder="Vege"
+          [(ngModel)]="ingredient.vege"
+          name="name"
+        />
+      </mat-form-field>
+    </mat-card>
+
+    <form class="buttons">
+      <button
+        class="button color"
+        mat-flat-button
+        color="primary"
+        (click)="create()"
+        style="font-size: 10px"
+      >
+        Create
+      </button>
+      <button
+        class="button"
+        *ngIf="editButton == false"
+        mat-flat-button
+        color="primary"
+        style="font-size: 10px"
+        disabled
+      >
+        Edit
+      </button>
+      <button
+        class="button color"
+        *ngIf="editButton == true"
+        mat-flat-button
+        color="primary"
+        (click)="edit()"
+        style="font-size: 10px"
+      >
+        Edit
+      </button>
+      <button
+        class="button"
+        *ngIf="deleteButton == false"
+        mat-flat-button
+        color="primary"
+        style="font-size: 10px"
+        disabled
+      >
+        Delete
+      </button>
+      <button
+        class="button color2"
+        *ngIf="deleteButton == true"
+        mat-flat-button
+        color="primary"
+        (click)="getIngredient()"
+        style="font-size: 10px"
+      >
+        Delete
+      </button>
+      <button
+        class="button color"
+        mat-flat-button
+        color="primary"
+        (click)="submit()"
+        style="font-size: 10px"
+      >
+        Submit
+      </button>
+    </form>
+  </div>
+
+  <div class="ingredientSearch">
+    <mat-form-field class="example-full-width" style="padding:5px">
+      <input
+        matInput
+        placeholder="Get ingredient by id"
+        [(ngModel)]="inputIdIngredient"
+        name="name"
+      />
+    </mat-form-field>
+
+    <button
+      mat-flat-button
+      color="primary"
+      (click)="getIngredient()"
+      style="font-size: 10px"
+      class="color"
+    >
+      Show ingredient
+    </button>
+
+    <form class="example-form">
+      <mat-form-field class="example-full-width" style="padding:5px">
+        <input
+          matInput
+          placeholder="Search for ingredients"
+          [(ngModel)]="inputNameIngredient"
+          name="name"
+        />
+      </mat-form-field>
+      <button
+        mat-flat-button
+        color="primary"
+        (click)="searchIngredients()"
+        style="font-size: 10px"
+        class="color"
+      >
+        Search
+      </button>
+    </form>
+
+    <mat-list *ngIf="list == true" role="list" class="list">
+      <mat-list-item
+        class="listItem"
+        role="listitem"
+        *ngFor="let ingredient of ingredientsList"
+      >
+        <div class="name">{{ ingredient.name }}</div>
+        <div class="separator"></div>
+        <button
+          class="button"
+          mat-flat-button
+          color="primary"
+          class="spaceBetween color"
+          (click)="editListIngredient(ingredient)"
+        >
+          Edit
+        </button>
+      </mat-list-item>
+    </mat-list>
+  </div>
+</div>

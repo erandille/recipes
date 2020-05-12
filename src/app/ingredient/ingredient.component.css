@@ -1,0 +1,15 @@
+.spaceBetween {
+  font-size: 10px;
+  left: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  font-size: 10px;
+}
+
+.color{
+  transition: all 0.3s ease;
+}
+
+.color:hover{
+  background: #FF569A;
+}

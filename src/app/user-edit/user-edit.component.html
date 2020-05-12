@@ -1,0 +1,135 @@
+<app-navbar></app-navbar>
+<mat-spinner *ngIf="spinner == true" class="spinner"></mat-spinner>
+<div *ngIf="spinner == false" class="container">
+  <div class="settingsContainer">
+    <mat-toolbar color="primary">
+      <span>Are you vege?</span>
+    </mat-toolbar>
+    <mat-card class="example-card">
+      <mat-card-content class="vegeBackground">
+        <div class="vege">{{ vege }}</div>
+        <button
+          mat-raised-button
+          color="primary"
+          type="submit"
+          style="margin: 10px auto; width: fit-content;"
+          (click)="onEditDietSubmit()"
+        >
+          Change diet
+        </button>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div class="settingsContainer">
+    <mat-toolbar color="primary">
+      <span>Password</span>
+    </mat-toolbar>
+    <mat-card>
+      <mat-card-content>
+        <form
+          class="form-container"
+          [formGroup]="editPasswordForm"
+          (ngSubmit)="onEditPasswordSubmit()"
+        >
+          <mat-form-field>
+            <input
+              matInput
+              formControlName="password"
+              placeholder="Enter new password"
+              type="text"
+            />
+          </mat-form-field>
+          <mat-form-field>
+            <input
+              matInput
+              formControlName="confirmPassword"
+              placeholder="Confirm new password"
+              type="text"
+            />
+          </mat-form-field>
+          <button
+            mat-raised-button
+            color="primary"
+            type="submit"
+            style="margin: 10px auto; width: fit-content;"
+            [disabled]="editPasswordForm.invalid"
+          >
+            Set new password
+          </button>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div class="settingsContainer">
+    <mat-toolbar color="primary">
+      <span>Email</span>
+    </mat-toolbar>
+    <mat-card>
+      <mat-card-content>
+        <form
+          class="form-container"
+          [formGroup]="editEmailForm"
+          (ngSubmit)="onEditEmailSubmit()"
+        >
+          <mat-form-field>
+            <input
+              matInput
+              formControlName="email"
+              placeholder="Set your email"
+              type="text"
+            />
+          </mat-form-field>
+          <button
+            mat-raised-button
+            color="primary"
+            type="submit"
+            style="margin: 10px auto; width: fit-content;"
+            [disabled]="editEmailForm.invalid"
+          >
+            Set your email
+          </button>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div class="settingsContainer">
+    <mat-toolbar color="primary">
+      <span>Avatar</span>
+    </mat-toolbar>
+    <mat-card>
+      <mat-card-content>
+        <form
+          class="form-container"
+          [formGroup]="changeAvatarForm"
+          (ngSubmit)="onChangeAvatarSubmit()"
+        >
+          <button
+            type="button"
+            mat-raised-button
+            color="accent"
+            (click)="imgFileInput.click()"
+          >
+            Choose a photo
+          </button>
+          <input
+            hidden
+            type="file"
+            #imgFileInput
+            formControlName="fileInput"
+            (change)="previewImage(imgFileInput.files)"
+          />
+          <img [src]="imgURL" style="margin-top:10px;" *ngIf="imgURL" />
+          <button
+            mat-raised-button
+            color="primary"
+            type="submit"
+            style="margin: 10px auto; width: fit-content;"
+            [disabled]="imgURL === null"
+          >
+            Change avatar
+          </button>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

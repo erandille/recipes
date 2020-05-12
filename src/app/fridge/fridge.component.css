@@ -1,0 +1,113 @@
+.overall {
+  width: 50%;
+  padding-left: 25%;
+  padding-right: 25%;
+}
+
+.container {
+  display: flex;
+}
+
+.mat-elevation-z8 {
+  flex: 3;
+  /* max-width: 500px; */
+  width: 100%;
+}
+
+th,
+td {
+  overflow: hidden;
+  width: 25%;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ingredientsLeft {
+  flex: 1;
+}
+
+.fridge {
+  flex: 1;
+  text-align: center;
+}
+
+.ingredientsRight {
+  flex: 3;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+}
+
+.spinner {
+  position: absolute;
+  height: 100px;
+  width: 100px;
+  top: 50%;
+  left: 50%;
+  margin-left: -50px;
+  margin-top: -50px;
+  background-size: 100%;
+}
+
+.ingredientsTitle {
+  padding: 10px;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+}
+.ingredientName {
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  padding: 5px;
+}
+
+.buttonDes {
+  font-size: 10px;
+  padding-left: 5px;
+  padding-right: 5px;
+  left: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.button {
+  flex: 1;
+}
+
+.color{
+  transition: all 0.3s ease;
+}
+
+.color:hover{
+  background: #FF569A;
+}
+
+.color2{
+  transition: all 0.3s ease;
+}
+
+.color2:hover{
+  background: #FF0050;
+}
+
+.textColor{
+  transition: all 0.3s ease;
+}
+
+.textColor:hover{
+  color: #FF569A;
+}
+
+.shrink{
+  transition: all 0.3s ease;
+}
+
+.shrink:hover
+{
+        -webkit-transform: scale(0.8);
+        -ms-transform: scale(0.8);
+        transform: scale(0.8);
+}

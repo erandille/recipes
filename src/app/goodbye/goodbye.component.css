@@ -1,0 +1,28 @@
+.container {
+  display: flex;
+  margin: 10px auto;
+  width: 50%;
+  flex-direction: column;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-container > * {
+  width: 100%;
+}
+
+.title {
+  text-align: center;
+}
+
+.buttonsBackground {
+  display: flex;
+}
+
+.button {
+  min-width: fit-content;
+  text-align: center;
+}

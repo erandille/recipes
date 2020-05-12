@@ -1,0 +1,133 @@
+<mat-spinner *ngIf="spinner == true" class="spinner"></mat-spinner>
+<div *ngIf="spinner == false">
+  <form class="example-form" *ngIf="userId == -1 || userId == 0">
+    <mat-form-field class="example-full-width" style="padding:5px">
+      <input
+        matInput
+        placeholder="Search for recipes"
+        [(ngModel)]="input"
+        name="name"
+      />
+    </mat-form-field>
+    <button
+      mat-flat-button
+      color="primary"
+      (click)="search()"
+      style="font-size: 10px"
+      class="color"
+    >
+      Search
+    </button>
+  </form>
+  <div *ngIf="spinner == false && recipes.length > 0">
+    <button
+      *ngIf="typeTab == 2"
+      mat-flat-button
+      color="primary"
+      (click)="allRecipes()"
+      style="font-size: 10px"
+    >
+      All Recipes
+    </button>
+    <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+      <ng-container matColumnDef="title">
+        <th mat-header-cell *matHeaderCellDef mat-header>Title</th>
+        <td mat-cell *matCellDef="let element">{{ element.title }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="vege">
+        <th mat-header-cell *matHeaderCellDef mat-header>Recipe vege</th>
+        <td mat-cell *matCellDef="let element">
+          <div *ngIf="element.vege == true">Yes</div>
+          <div *ngIf="element.vege == false">No</div>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="author">
+        <th mat-header-cell *matHeaderCellDef mat-header>Author</th>
+        <td mat-cell *matCellDef="let element">
+          <a
+            style="cursor: pointer"
+            (click)="navigateProfile(element.user.id)"
+            class="textColor"
+            >{{ element.user["username"] }}</a
+          >
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="show">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let element">
+          <button
+            class="showRecipe color"
+            mat-flat-button
+            color="primary"
+            (click)="navigateRecipe(element.id)"
+          >
+            Show Recipe
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+
+    <div>
+      <button *ngIf="actualPage == 0" mat-flat-button color="primary" disabled>
+        Previous Page
+      </button>
+      <button
+        *ngIf="actualPage > 0"
+        mat-flat-button
+        color="primary"
+        (click)="prevPage()"
+        class="color"
+      >
+        Previous Page
+      </button>
+      <button *ngIf="lastPage == true" mat-flat-button color="primary" disabled>
+        Next Page
+      </button>
+      <button
+        *ngIf="lastPage == false"
+        mat-flat-button
+        color="primary"
+        (click)="nextPage()"
+        class="color"
+      >
+        Next Page
+      </button>
+      <mat-form-field class="choose">
+        <mat-label>Limit on page</mat-label>
+        <mat-select [(value)]="actualLimit" placeholder="None">
+          <mat-option value="10" (click)="refresh()">10</mat-option>
+          <mat-option value="20" (click)="refresh()">20</mat-option>
+          <mat-option value="50" (click)="refresh()">50</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field *ngIf="userId == 0" class="choose">
+        <mat-label>Sort by</mat-label>
+        <mat-select [(value)]="actualSort" placeholder="None">
+          <mat-option value="Title" (click)="refresh()">Title</mat-option>
+          <mat-option value="Vege" (click)="refresh()">Vege</mat-option>
+          <mat-option value="Ingredients" (click)="refresh()">
+            >Ingredients</mat-option
+          >
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+  <div
+    *ngIf="spinner == false && recipes.length == 0 && (userId == 0 || userId == -1)"
+    class="notAdded"
+  >
+    NO RECIPES AVAILABLE
+  </div>
+  <div
+    *ngIf="spinner == false && recipes.length == 0 && userId > 0"
+    class="notAdded"
+  >
+    NO RECIPES ADDED
+  </div>
+</div>

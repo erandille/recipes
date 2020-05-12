@@ -1,0 +1,110 @@
+<app-navbar></app-navbar>
+<mat-spinner *ngIf="spinner == true" class="spinner"></mat-spinner>
+<div *ngIf="spinner == false" class="overall">
+  <div class="container">
+    <mat-card class="fridge">
+      <mat-list role="list">
+        <div class="ingredientsTitle">My fridge:</div>
+        <mat-list-item
+          role="listitem"
+          class="listItem"
+          *ngFor="let ingredient of fridge.ingredients"
+        >
+          <h3 class="ingredientName">{{ ingredient["name"] }}</h3>
+          <button
+            mat-mini-fab
+            color="primary"
+            class="buttonDes color2 shrink"
+            (click)="deleteIngredient(ingredient.id)"
+          >
+            -
+          </button>
+        </mat-list-item>
+      </mat-list>
+    </mat-card>
+
+    <mat-card class="ingredientsLeft">
+      <app-ingredient
+        (eventIngredient)="selectedIngredient($event)"
+      ></app-ingredient>
+    </mat-card>
+  </div>
+
+  <div class="buttons">
+    <button
+      mat-flat-button
+      color="primary"
+      class="button color2"
+      (click)="clearFridge()"
+    >
+      Clear Fridge
+    </button>
+    <div></div>
+    <button
+      mat-flat-button
+      color="primary"
+      class="button color"
+      (click)="showRecipes()"
+    >
+      Search for recipes
+    </button>
+  </div>
+</div>
+
+<div *ngIf="spinner == false && recipes == true" class="array">
+  <!--<mat-form-field>
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter"
+        matInput
+        [(ngModel)]="input"
+    >
+  </mat-form-field>
+  <button mat-flat-button color="primary" (click)="applyFilter(input)" style ="font-size: 10px">
+      Apply
+  </button>
+  -->
+  <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+    <ng-container matColumnDef="title">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Title</th>
+      <td mat-cell *matCellDef="let element">{{ element.title }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="vege">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Recipe vege</th>
+      <td mat-cell *matCellDef="let element">
+        <div *ngIf="element.vege == true">Yes</div>
+        <div *ngIf="element.vege == false">No</div>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="author">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Author</th>
+      <td mat-cell *matCellDef="let element">
+        <a style="cursor: pointer" (click)="navigateProfile(element.user.id)" class="textColor">{{
+          element.user["username"]
+        }}</a>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="show">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let element">
+        <button
+          class="showRecipe color"
+          mat-flat-button
+          color="primary"
+          (click)="navigateRecipe(element.id)"
+        >
+          Show Recipe
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+
+  <mat-paginator
+    [pageSizeOptions]="[5, 10, 20]"
+    showFirstLastButtons
+  ></mat-paginator>
+</div>

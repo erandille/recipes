@@ -1,0 +1,66 @@
+.spinner {
+  position: absolute;
+  height: 100px;
+  width: 100px;
+  top: 50%;
+  left: 50%;
+  margin-left: -50px;
+  margin-top: -50px;
+  background-size: 100%;
+}
+
+.container {
+  display: flex;
+}
+
+table {
+  width: 100%;
+}
+
+.userProfile {
+  flex: 1;
+}
+
+.username {
+  text-align: center;
+}
+
+.uservege{
+  text-align: center;
+}
+
+.userRecipes {
+  flex: 2;
+}
+
+.buttons {
+  display: flex;
+}
+
+.editButton {
+  min-width: fit-content;
+  flex: 1;
+}
+
+.fridgeButton {
+  color: primary;
+  min-width: fit-content;
+  flex: 1;
+}
+
+.fade{
+  transition: all 0.3s ease;
+}
+
+.fade:hover{
+  background: #FF569A;
+}
+
+.link {
+  color: white;
+  text-decoration: none;
+}
+
+.separator {
+  flex: 1;
+}

@@ -1,0 +1,62 @@
+.overall {
+  display: flex;
+}
+
+.ingredientEdit {
+  display: flex;
+  flex-flow: column;
+  flex: 1;
+}
+
+.editBox {
+  display: flex;
+  flex-flow: column;
+}
+
+.buttons {
+  display: flex;
+}
+
+.button {
+  flex: 1;
+}
+
+.example-full-width {
+  width: 70%;
+}
+
+.ingredientSearch {
+  flex: 1;
+}
+
+.listItem {
+  display: flex;
+}
+
+.name {
+  flex: 2;
+}
+
+.separator {
+  flex: 1;
+}
+
+.button {
+  flex: 2;
+}
+
+.color{
+  transition: all 0.3s ease;
+}
+
+.color:hover{
+  background: #FF569A;
+}
+
+.color2{
+  transition: all 0.3s ease;
+}
+
+.color2:hover{
+  background: #FF0050;
+}

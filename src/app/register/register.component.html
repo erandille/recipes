@@ -1,0 +1,70 @@
+<div class="container">
+  <mat-toolbar color="primary">
+    <span>Registration</span>
+  </mat-toolbar>
+  <mat-card class="example-card">
+    <mat-card-content>
+      <form
+        class="form-container"
+        [formGroup]="registerForm"
+        (ngSubmit)="onSubmit()"
+      >
+        <mat-form-field>
+          <input
+            matInput
+            formControlName="username"
+            placeholder="User nick"
+            type="text"
+          />
+        </mat-form-field>
+
+        <mat-form-field>
+          <input
+            matInput
+            formControlName="email"
+            placeholder="Email"
+            type="text"
+          />
+        </mat-form-field>
+
+        <mat-form-field>
+          <input
+            matInput
+            formControlName="password"
+            placeholder="Password"
+            type="password"
+            autocomplete="off"
+          />
+        </mat-form-field>
+
+        <mat-form-field>
+          <input
+            matInput
+            formControlName="confirmPassword"
+            placeholder="Confirm password"
+            type="password"
+            autocomplete="off"
+          />
+        </mat-form-field>
+
+        <button
+          mat-raised-button
+          color="primary"
+          type="submit"
+          style="margin: 10px auto; width: 30%;"
+          [disabled]="registerForm.invalid"
+        >
+          Register
+        </button>
+      </form>
+    </mat-card-content>
+    <mat-card-actions>
+      <div style=" font-size: 12px;">
+        Do you already have an account?
+        <a href="/login" style="text-decoration: none; color: plum;"
+          >Click here to sign in!</a
+        >
+      </div>
+    </mat-card-actions>
+  </mat-card>
+</div>

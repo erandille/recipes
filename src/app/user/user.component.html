@@ -1,0 +1,44 @@
+<app-navbar *ngIf="userId > 0 && validateUser() == false"></app-navbar>
+<mat-spinner *ngIf="spinner == true" class="spinner"></mat-spinner>
+<div class="container" *ngIf="spinner == false">
+  <div class="userProfile">
+    <mat-card style="text-align: center;">
+      <img
+        *ngIf="user.avatarPath"
+        src="{{ user.avatarPath }}"
+        height="100"
+        width="100"
+      />
+      <div class="username">Username - {{ user.username }}</div>
+      <div class="uservege">
+        <div *ngIf="user.vege == true">Vegeterian - Yes</div>
+        <div *ngIf="user.vege == false">Vegeterian - No</div>
+      </div>
+
+      <div class="buttons" style="margin-top: 10px;">
+        <div class="separator"></div>
+        <button
+          *ngIf="checkUser() == true"
+          mat-flat-button
+          color="primary"
+          (click)="editProfile()"
+          class="editButton fade"
+        >
+          Edit profile
+        </button>
+        <div class="separator"></div>
+        <button
+          *ngIf="checkUser() == true"
+          mat-flat-button
+          color="primary"
+          class="fridgeButton fade"
+        >
+          <a href="/fridge" class="link">My Fridge</a>
+        </button>
+        <div class="separator"></div>
+      </div>
+    </mat-card>
+  </div>
+
+  <app-recipe-tab class="userRecipes" [userId]="userId"></app-recipe-tab>
+</div>

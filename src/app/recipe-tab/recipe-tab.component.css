@@ -1,0 +1,62 @@
+.mat-elevation-z8 {
+  flex: 3;
+  /* max-width: 500px; */
+  width: 100%;
+}
+
+th,
+td {
+  overflow: hidden;
+  width: 25%;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.spinner {
+  position: absolute;
+  height: 100px;
+  width: 100px;
+  top: 50%;
+  left: 50%;
+  margin-left: -50px;
+  margin-top: -50px;
+  background-size: 100%;
+}
+
+.showRecipe {
+  position: absolute;
+  margin-top: -17px;
+}
+
+.choose {
+  padding: 20px;
+}
+
+.exception {
+  padding: 10px;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  text-align: center;
+}
+
+.notAdded {
+  text-align: center;
+  padding: 25%;
+}
+
+.color{
+  transition: all 0.3s ease;
+}
+
+.color:hover{
+  background: #FF569A;
+}
+
+.textColor{
+  transition: all 0.3s ease;
+}
+
+.textColor:hover{
+  color: #FF569A;
+}

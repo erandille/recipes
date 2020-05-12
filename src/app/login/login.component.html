@@ -1,0 +1,52 @@
+<div class="container">
+  <mat-toolbar color="primary">
+    <span>Logging in</span>
+  </mat-toolbar>
+  <mat-card class="example-card">
+    <mat-card-content>
+      <form
+        class="form-container"
+        [formGroup]="loginForm"
+        (ngSubmit)="onSubmit()"
+      >
+        <mat-form-field>
+          <input
+            matInput
+            formControlName="username"
+            placeholder="User nick"
+            type="text"
+          />
+        </mat-form-field>
+
+        <mat-form-field>
+          <input
+            matInput
+            formControlName="password"
+            placeholder="Password"
+            type="password"
+            autocomplete="off"
+          />
+        </mat-form-field>
+
+        <button
+          mat-raised-button
+          color="primary"
+          type="submit"
+          style="margin: 10px auto; width: 20%;"
+          [disabled]="loginForm.invalid"
+          class="button"
+        >
+          LOGIN
+        </button>
+      </form>
+    </mat-card-content>
+    <mat-card-actions>
+      <div style=" font-size: 12px;">
+        You are not registered?
+        <a href="/register" style="text-decoration: none; color: plum;"
+          >Click here to sign up in 5 seconds!</a
+        >
+      </div>
+    </mat-card-actions>
+  </mat-card>
+</div>

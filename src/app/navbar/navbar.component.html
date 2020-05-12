@@ -1,0 +1,36 @@
+<mat-toolbar color="primary">
+  <a href="/" style="text-decoration: none; color: white" class="mainLink border">Przepisy</a>
+  <div *ngIf="isLogged == true" class="bar">
+    <div class="buttons">
+      <button mat-flat-button color="primary" (click)="navigateRecipes()" class="button grow">
+        All Recipes
+      </button>
+      <button mat-flat-button color="primary" (click)="navigateForm()" class="button grow">
+        Create Recipe
+      </button>
+      <button mat-flat-button color="primary" (click)="navigateUsers()" class="button grow">
+        Users
+      </button>
+      <button
+        *ngIf="admin == true"
+        mat-flat-button
+        color="primary"
+        (click)="navigateIngredients()"
+        class="button grow"
+      >
+        Ingredients
+      </button>
+    </div>
+
+    <div class="separator"></div>
+
+    <button
+      mat-flat-button
+      color="accent"
+      (click)="authService.logoutUser()"
+      class="logout color shrink"
+    >
+      <a href="/goodbye" class="link">Logout</a>
+    </button>
+  </div>
+</mat-toolbar>

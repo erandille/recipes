@@ -1,0 +1,139 @@
+<app-navbar></app-navbar>
+<div class="container">
+  <mat-spinner *ngIf="spinner == true" class="spinner"></mat-spinner>
+  <div class="post" *ngIf="spinner == false">
+    <form *ngIf="typeForm == 1" class="form">
+      <mat-form-field class="titleContainer">
+        <input
+          matInput
+          placeholder="Input title"
+          [(ngModel)]="recipe.title"
+          name="title"
+          class="title"
+        />
+      </mat-form-field>
+
+      <mat-form-field class="description">
+        <textarea
+          matInput
+          placeholder="Input description"
+          [(ngModel)]="recipe.description"
+          name="description"
+          class="inputDescription"
+        ></textarea>
+      </mat-form-field>
+
+      <button
+        mat-flat-button
+        color="primary"
+        (click)="createRecipe()"
+        class="color"
+      >
+        Add recipe
+      </button>
+    </form>
+
+    <form *ngIf="typeForm == 0" class="form">
+      <mat-form-field class="titleContainer">
+        <input
+          matInput
+          placeholder="Edit title"
+          [(ngModel)]="recipe.title"
+          name="title"
+          class="title"
+        />
+      </mat-form-field>
+
+      <mat-form-field class="description">
+        <textarea
+          matInput
+          placeholder="Edit description"
+          [(ngModel)]="recipe.description"
+          name="description"
+          class="inputDescription"
+        ></textarea>
+      </mat-form-field>
+      <button
+        mat-flat-button
+        color="primary"
+        (click)="putRecipe(recipe.id)"
+        class="color"
+      >
+        Apply changes
+      </button>
+    </form>
+  </div>
+
+  <div class="ingredientsOuter" *ngIf="spinner == false">
+    <div class="ingredientsTitle">INGREDIENTS</div>
+    <div class="ingredients">
+      <mat-list role="list" class="list">
+        <div class="ingredientsTitle" *ngIf="spinner == false">Added:</div>
+        <mat-list-item
+          role="listitem"
+          *ngFor="let ingredient of recipe.ingredients"
+        >
+          <h3 class="ingredientName">{{ ingredient["name"] }}</h3>
+          <div class="separator"></div>
+          <button
+            mat-flat-button
+            color="primary"
+            class="button color2 shrink"
+            (click)="deleteIngredient(ingredient)"
+          >
+            -
+          </button>
+        </mat-list-item>
+      </mat-list>
+
+      <div class="ingredientSearch" *ngIf="spinner == false">
+        <app-ingredient
+          (eventIngredient)="selectedIngredient($event)"
+        ></app-ingredient>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="spinner == false" class="imageBoard">
+        <input
+      hidden
+      type="file"
+      #imgFileInput
+      (change)="previewImage(imgFileInput.files)"
+      class="imageInput"
+    />
+    <img
+      [src]="imgURL"
+      style="margin-top:10px; width: fit-content; max-width: 100px;"
+      *ngIf="imgURL"
+      class="image"
+    />
+
+    <div class="buttons">
+      <button
+        type="button"
+        mat-raised-button
+        color="primary"
+        type="submit"
+        style="margin: 10px auto; width: fit-content;"
+        (click)="imgFileInput.click()"
+        class="imageButton color"
+      >
+        Choose recipe image
+      </button>
+      <button
+        *ngIf="imgURL"
+        mat-raised-button
+        color="primary"
+        type="submit"
+        style="margin: 10px auto; width: fit-content;"
+        (click)="imgURL = null"
+        class="imageDelete color2"
+      >
+        Delete image
+      </button>
+    </div>
+
+  </div>
+
+</div>

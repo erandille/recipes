@@ -1,0 +1,68 @@
+<app-navbar></app-navbar>
+<mat-spinner *ngIf="spinner == true" class="spinner"></mat-spinner>
+<div class="container" *ngIf="spinner == false">
+  <div class="get">
+    <mat-card class="recipe" color="primary">
+      <h3 class="recipeTitle">{{ recipeCard.title }}</h3>
+      <div *ngIf="recipeCard.vege == true">Vege recipe - Yes</div>
+      <div *ngIf="recipeCard.vege == false">Vege recipe - No</div>
+
+      <div class="separator"></div>
+
+      <img
+        *ngIf="recipeCard.imgPath"
+        src="{{ recipeCard.imgPath }}"
+        height="300"
+        width="400"
+        class="image"
+      />
+
+      <div class="inside">
+        <mat-card class="ingredients">
+          <h3>Składniki:</h3>
+          <mat-list>
+            <mat-list-item *ngFor="let ingredient of recipeCard.ingredients">
+              - {{ ingredient.name }}
+            </mat-list-item>
+          </mat-list>
+        </mat-card>
+
+        <mat-card class="cardDescription">
+          <h3>Przepis:</h3>
+          <div>{{ recipeCard.description }}</div>
+        </mat-card>
+      </div>
+
+      <div class="authorPane">
+        <div class="separator"></div>
+
+        <div style="cursor: pointer" class="author rotate" (click)="navigateProfile()">
+          ~{{ recipeCard.user["username"] }}
+        </div>
+      </div>
+
+      <div class="buttons">
+        <button
+          *ngIf="checkUser() == true"
+          mat-flat-button
+          color="primary"
+          style="margin: 10px auto; width: fit-content;"
+          (click)="openDialog()"
+          class="deleteButton color grow"
+        >
+          Delete recipe
+        </button>
+        <button
+          *ngIf="checkUser() == true"
+          mat-flat-button
+          color="primary"
+          style="margin: 10px auto; width: fit-content;"
+          (click)="editRecipe()"
+          class="editButton color grow"
+        >
+          Edit recipe
+        </button>
+      </div>
+    </mat-card>
+  </div>
+</div>
